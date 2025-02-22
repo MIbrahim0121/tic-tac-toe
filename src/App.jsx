@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import './App.css'; // Import CSS file for styles
+import React, { useState } from "react";
+import "./App.css";
 
 const App = () => {
-  const [board, setBoard] = useState(Array(9).fill(null)); // Initialize the board with null values
-  const [isXNext, setIsXNext] = useState(true); // Track whose turn it is
+  const [board, setBoard] = useState(Array(9).fill(null));
+  const [isXNext, setIsXNext] = useState(true);
 
-  // Calculate the winner based on the current board state
   const calculateWinner = (squares) => {
     const lines = [
       [0, 1, 2],
@@ -27,21 +26,19 @@ const App = () => {
   };
 
   const winner = calculateWinner(board);
-  const status = winner ? `Winner: ${winner}` : `Next player: ${isXNext ? 'X' : 'O'}`;
+  const status = winner ? `Winner: ${winner}` : `Next player: ${isXNext ? "X" : "O"}`;
 
-  // Handle the click event for a square
   const handleClick = (index) => {
-    if (board[index] || winner) return; // Ignore if square is already filled or if there's a winner
+    if (board[index] || winner) return;
     const newBoard = [...board];
-    newBoard[index] = isXNext ? 'X' : 'O'; // Set the current player's mark
+    newBoard[index] = isXNext ? "X" : "O";
     setBoard(newBoard);
-    setIsXNext(!isXNext); // Switch turns
+    setIsXNext(!isXNext);
   };
 
-  // Reset the game
   const handleReset = () => {
-    setBoard(Array(9).fill(null)); // Reset the board to initial state
-    setIsXNext(true); // Reset the turn to 'X'
+    setBoard(Array(9).fill(null));
+    setIsXNext(true);
   };
 
   return (
